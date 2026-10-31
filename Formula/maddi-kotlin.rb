@@ -12,7 +12,22 @@ class MaddiKotlin < Formula
   def install
     rm Dir["bin/*.bat"]
     libexec.install Dir["*"]
-    (bin/"maddi-kotlin").write_env_script libexec/"bin/maddi-kotlin", Language::Java.java_home_env
+    # Homebrew's JDK, or the one MADDI_JDK_HOME names: Temurin, say, as long as it is 26 or later
+    (bin/"maddi-kotlin").write <<~SH
+      #!/bin/bash
+      if [ -n "${MADDI_JDK_HOME:-}" ]; then
+        feature=$(sed -n 's/^JAVA_VERSION="\\([0-9]*\\).*/\\1/p' "$MADDI_JDK_HOME/release" 2>/dev/null)
+        if [ -z "$feature" ] || [ "$feature" -lt 26 ]; then
+          echo "maddi-kotlin: MADDI_JDK_HOME=$MADDI_JDK_HOME is not a JDK 26 or later" >&2
+          exit 1
+        fi
+        export JAVA_HOME="$MADDI_JDK_HOME"
+      else
+        export JAVA_HOME="#{Language::Java.java_home}"
+      fi
+      exec "#{libexec}/bin/maddi-kotlin" "$@"
+    SH
+    chmod 0755, bin/"maddi-kotlin"
   end
 
   test do

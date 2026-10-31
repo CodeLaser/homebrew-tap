@@ -12,7 +12,22 @@ class Maddi < Formula
   def install
     rm Dir["bin/*.bat"]
     libexec.install Dir["*"]
-    (bin/"maddi").write_env_script libexec/"bin/maddi", Language::Java.java_home_env("25")
+    # Homebrew's JDK, or the one MADDI_JDK_HOME names: Temurin, say, as long as it is 25 or later
+    (bin/"maddi").write <<~SH
+      #!/bin/bash
+      if [ -n "${MADDI_JDK_HOME:-}" ]; then
+        feature=$(sed -n 's/^JAVA_VERSION="\\([0-9]*\\).*/\\1/p' "$MADDI_JDK_HOME/release" 2>/dev/null)
+        if [ -z "$feature" ] || [ "$feature" -lt 25 ]; then
+          echo "maddi: MADDI_JDK_HOME=$MADDI_JDK_HOME is not a JDK 25 or later" >&2
+          exit 1
+        fi
+        export JAVA_HOME="$MADDI_JDK_HOME"
+      else
+        export JAVA_HOME="#{Language::Java.java_home("25")}"
+      fi
+      exec "#{libexec}/bin/maddi" "$@"
+    SH
+    chmod 0755, bin/"maddi"
   end
 
   test do
