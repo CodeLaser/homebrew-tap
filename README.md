@@ -29,7 +29,7 @@ Each formula installs the JDK it needs, and runs on it. To run on another JDK, T
 `MADDI_JDK_HOME`; it must be 25 or later (26 for `maddi-kotlin`), which is checked:
 
 ```bash
-export MADDI_JDK_HOME=$(/usr/libexec/java_home -v 25+)   # macOS: the newest JDK 25 or later installed
+export MADDI_JDK_HOME=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home   # Temurin 25 on macOS
 ```
 
 For `maddi-mcp`, the variable chooses the JDK of the server and of the analysis daemon it starts.
