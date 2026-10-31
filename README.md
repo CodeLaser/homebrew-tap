@@ -1,0 +1,32 @@
+# CodeLaser's Homebrew tap
+
+[maddi](https://github.com/CodeLaser/maddi), the modification and immutability analyzer for Java, for macOS and
+Linux. Each formula installs the distribution from maddi's
+[GitHub release](https://github.com/CodeLaser/maddi/releases) together with the JDK it runs on.
+
+```bash
+brew install codelaser/tap/maddi          # the command line, for Java projects
+brew install codelaser/tap/maddi-kotlin   # the command line, for projects with Kotlin sources too
+brew install codelaser/tap/maddi-mcp      # the MCP server for coding agents (from 0.9.6)
+```
+
+Homebrew 7 marks a tap like this one untrusted; installing a formula by its full name, as above, works all the
+same. `brew trust --tap codelaser/tap` trusts it for good.
+
+Register the MCP server with your agent, for Claude Code:
+
+```bash
+claude mcp add maddi -- $(brew --prefix)/bin/maddi-mcp
+```
+
+| Formula | Runs on | What it is |
+|---|---|---|
+| `maddi` | `openjdk@25` | `maddi`, the command line: analysis, annotated APIs, translation to Kotlin, C# and Rust |
+| `maddi-kotlin` | `openjdk` (26 or later) | `maddi-kotlin`: the same options, for projects with Kotlin sources |
+| `maddi-mcp` | `openjdk@25` | `maddi-mcp`, the [MCP server](https://github.com/CodeLaser/maddi-dist#coding-agents-mcp), with the analysis daemon it starts |
+
+The formulas are updated by maddi's release script (`release-cli.sh` in
+[maddi-dist](https://github.com/CodeLaser/maddi-dist)) at every release. Issues with maddi itself go to
+[CodeLaser/maddi](https://github.com/CodeLaser/maddi/issues).
+
+Licensed under the [Apache License, Version 2.0](LICENSE).
