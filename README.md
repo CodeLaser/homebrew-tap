@@ -10,8 +10,8 @@ brew install codelaser/tap/maddi-kotlin   # the command line, for projects with 
 brew install codelaser/tap/maddi-mcp      # the MCP server for coding agents (from 0.9.6)
 ```
 
-Homebrew 7 marks a tap like this one untrusted; installing a formula by its full name, as above, works all the
-same. `brew trust --tap codelaser/tap` trusts it for good.
+Homebrew 7 marks a tap like this one untrusted. Installing a formula by its full name, as above, works all the
+same; `brew info` and `brew audit` on it ask you to trust the tap first: `brew trust codelaser/tap`.
 
 Register the MCP server with your agent, for Claude Code:
 
