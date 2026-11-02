@@ -5,7 +5,7 @@ class MaddiMcp < Formula
   desc "MCP server for maddi, the modification and immutability analyzer for Java"
   homepage "https://github.com/CodeLaser/maddi-dist#coding-agents-mcp"
   url "https://github.com/CodeLaser/maddi/releases/download/v0.9.6/maddi-mcp-0.9.6.zip"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "87b84d02ca72a12f9b92ef654eb196820c7e61c89480103a41094937b34a0155"
   license "Apache-2.0"
 
   depends_on "openjdk@25"

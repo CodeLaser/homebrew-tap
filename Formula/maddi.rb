@@ -3,8 +3,8 @@
 class Maddi < Formula
   desc "Modification and immutability analyzer for Java, and Java translator"
   homepage "https://github.com/CodeLaser/maddi"
-  url "https://github.com/CodeLaser/maddi/releases/download/v0.9.5/maddi-0.9.5.zip"
-  sha256 "97ad0a266644d5cd4e0cd32e283a4141db96ae9ef5381da6bf193ee0ac7269cc"
+  url "https://github.com/CodeLaser/maddi/releases/download/v0.9.6/maddi-0.9.6.zip"
+  sha256 "1febd2fc00137d71b8ca485d2e2aa31a8b5c23a52f67ef40fde907e6d1d646b6"
   license "Apache-2.0"
 
   depends_on "openjdk@25"

@@ -3,8 +3,8 @@
 class MaddiKotlin < Formula
   desc "Modification and immutability analyzer for Java and Kotlin"
   homepage "https://github.com/CodeLaser/maddi"
-  url "https://github.com/CodeLaser/maddi/releases/download/v0.9.5/maddi-kotlin-0.9.5.zip"
-  sha256 "5523b0f73f66b0e6a3f092bb27c346402a14dbadfdc884f07a388dfffdd4db28"
+  url "https://github.com/CodeLaser/maddi/releases/download/v0.9.6/maddi-kotlin-0.9.6.zip"
+  sha256 "6e8dbe8775a58078166dba92d87cf00d6399297798748d346f1194d65f15b41f"
   license "Apache-2.0"
 
   depends_on "openjdk"
